@@ -11,7 +11,7 @@ function App() {
     <div className="App">
 <AddFood/>
 {/*  display the list    */}
-+
+
  {
   foods.map ((oneFood)=> { 
     return <FoodBox key={oneFood.name} food={oneFood}/>

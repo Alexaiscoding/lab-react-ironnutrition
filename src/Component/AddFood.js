@@ -1,38 +1,59 @@
 import React from 'react';
-import {useState} from 'react';
+import { useState } from 'react';
+
+const AddFood = ({setIsClicked}) => {
+  const [name, setName] = useState('');
+  const [calories, setCalories] = useState('');
+  const [image, setImage] = useState('');
+  const handleNameInput = (e) => setName(e.target.value);
+  const handleCalorieseInput = (e) => setCalories(e.target.value);
+  const handleImageInput = (e) => setImage(e.target.value);
+
+  const handleSubmit = (e) => { e.preventDefault();
+  const newFood = { name:name, calories:calories, image:image} 
+  AddFood (newFood)
+  setName("")
+  setCalories(0)
+  setImage("")
+  setIsClicked (true)
+console.log("Submitted,newMovie");}
 
 
-const AddFood = () => {
-    const[ name, setName]= useState('');
-    const [calories, setCalories] = useState('');
-    const [ image, setImage]= useState('');
+  return (
+    <div>
+      <h4 className="add" onClick={() => {}}> {setIsClicked ? <span> UNDO </span>: <span> ok </span>} Add New Food </h4>
+      <form action="">
+        <label for=""> Name</label>
+        <input
+          type="text"
+          name="name"
+          id=""
+          value={name}
+          onChange={handleNameInput}
+        />
+        
+        <label for=""> Calories</label>
+        <input
+          type="text"
+          name="calories"
+          id=""
+          value={calories}
+          onChange={handleCalorieseInput}
+        />
 
-    return (
+        <label for="">Image</label>
+        <input
+          type="file"
+          name="image"
+          id="image"
+          value={image}
+          onChange={handleImageInput}
+        />
 
-<div>   
-    <h4> Add New Food  </h4>
-        <form action="">
+        <button>Submit </button>
+      </form>
+    </div>
+  );
+};
 
-<label for=""> Name</label>
-<input type="text" name="name" id="" value={name} />
-
-<label for=""> Calories</label>
-<input type="text" name="calories" id="" value={calories} />
-
-<label for="">Image</label>
-<input type="text" name="image" id="" value={image}/ >
-
-
-
-            <button>Add new food </button>
-            
-        </form>
-
-
-   
-        </div>
-    )
-}
-
-
-export default AddFood; 
+export default AddFood;

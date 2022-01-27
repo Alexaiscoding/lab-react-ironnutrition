@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-const AddFood = ({setIsClicked}) => {
+const AddFood = ({addFood}) => {
   const [name, setName] = useState('');
   const [calories, setCalories] = useState('');
   const [image, setImage] = useState('');
@@ -10,20 +10,19 @@ const AddFood = ({setIsClicked}) => {
   const handleImageInput = (e) => setImage(e.target.value);
 
   const handleSubmit = (e) => { e.preventDefault();
-  const newFood = { name:name, calories:calories, image:image} 
-  AddFood (newFood)
+  const food = { name:name, calories:calories, image:image} 
+  /* addFood (newFood) */
   setName("")
   setCalories(0)
   setImage("")
-  setIsClicked (true)
-console.log("Submitted,newMovie");}
-
+console.log("Submitted,newFood");}
+const[show, setShow] = useState(true)
 
   return (
     <div>
-      <h4 className="add" onClick={() => {}}> {setIsClicked ? <span> UNDO </span>: <span> ok </span>} Add New Food </h4>
-      <form action="">
-        <label for=""> Name</label>
+      <h4 > Add New Food </h4>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name"> Name</label>
         <input
           type="text"
           name="name"
@@ -32,7 +31,7 @@ console.log("Submitted,newMovie");}
           onChange={handleNameInput}
         />
         
-        <label for=""> Calories</label>
+        <label htmlFor="calories"> Calories</label>
         <input
           type="text"
           name="calories"
@@ -41,7 +40,7 @@ console.log("Submitted,newMovie");}
           onChange={handleCalorieseInput}
         />
 
-        <label for="">Image</label>
+        <label htmlFor="image">Image</label>
         <input
           type="file"
           name="image"
@@ -50,7 +49,7 @@ console.log("Submitted,newMovie");}
           onChange={handleImageInput}
         />
 
-        <button>Submit </button>
+        <button className="submit" onClick={() => setShow(!show)}>{ show ? "hide" : "Show"} Submit Food </button>
       </form>
     </div>
   );

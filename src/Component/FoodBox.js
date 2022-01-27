@@ -1,9 +1,13 @@
 import React from 'react';
-
+import {useState} from 'react'
 const FoodBox = (props) => {
-
   console.log(props)
 	const {food} = props;
+
+  
+  const[count, setCount] = useState (0)
+  const handleChange = (e) => {
+    setCount(e.target.value);};
 
     return(
 
@@ -25,13 +29,13 @@ const FoodBox = (props) => {
     <div className="media-right">
       <div className="field has-addons">
         <div className="control">
-          <input className="input" type="number" value="1" />
+          <input className="input" onChange={handleChange} type="number" value="{count}" />
         </div>
         <div className="control">
           <button className="button is-info">
             +
           </button>
-          <button> </button>
+          <button className="button" onClick={() => addFood (food,count)}> </button>
         </div>
       </div>
     </div>
